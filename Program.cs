@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 class TUI
-{ // Classe pour afficher un menu en mode texte (Text User Interface)
+{
     private string[] options;
     private int cursorPosition;
     private string title;
