@@ -7,3 +7,4 @@ Fait avec dotnet 7.0
 **Solution 1** : Dans `bin/Debug/net7.0`, il y a un exécutable déjà prêt.
 
 **Solution 2** : À l'aide d'un terminal, rendez-vous dans le dossier du projet (potentiellement `asynconf`) et exécutez la commande `dotnet run`.
+(aide de github copilot)
