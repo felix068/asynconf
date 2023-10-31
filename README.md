@@ -11,4 +11,5 @@ Si vous n'avez pas .NET 7.0, allez le télécharger ici (il faut `.NET Runtime 7
 Si vous n'avez pas le SDK NET 7.0, allez le télécharger ici (il faut `SDK 7.0`) : [https://dotnet.microsoft.com/en-us/download/dotnet/7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 
+
 (aide de github copilot)
