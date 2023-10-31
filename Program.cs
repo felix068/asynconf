@@ -75,6 +75,7 @@ class TUI
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
+            // Si l'utilisateur appuie sur une touche
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -258,5 +259,6 @@ class Program
         Console.WriteLine("║ Taux d'emprunt   ║ " + tauxEmprunt.PadRight(14) + "% ║");
         Console.WriteLine("╚══════════════════╩═════════════════╝");
         Console.ResetColor();
+        //La plupart des commentaires sont faits par Copilot
     }
 }
