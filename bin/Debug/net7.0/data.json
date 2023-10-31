@@ -1,0 +1,134 @@
+{
+    "Type": [
+        {
+            "Nom": "Citadine",
+            "Poids": "800-1300kg",
+            "Note": "8/10"
+        },
+        {
+            "Nom": "Cabriolet",
+            "Poids": "1300-2000kg",
+            "Note": "6/10"
+        },
+        {
+            "Nom": "Berline",
+            "Poids": "1300-1800kg",
+            "Note": "6,5/10"
+        },
+        {
+            "Nom": "SUV / 4x4",
+            "Poids": "1500-2500kg",
+            "Note": "4/10"
+        }
+    ],
+    "Kilometrage": [
+        {
+            "Kilometrage": "5-10K/km",
+            "Note": "9/10"
+        },
+        {
+            "Kilometrage": "10-15K/km",
+            "Note": "7/10"
+        },
+        {
+            "Kilometrage": "15-20K/km",
+            "Note": "5/10"
+        },
+        {
+            "Kilometrage": "20-25K/km",
+            "Note": "3/10"
+        },
+        {
+            "Kilometrage": "25-30K/km",
+            "Note": "1/10"
+        }
+    ],
+    "Annee": [
+        {
+            "Annee": "1960-1970",
+            "Note": "1/10"
+        },
+        {
+            "Annee": "1970-1980",
+            "Note": "2/10"
+        },
+        {
+            "Annee": "1980-1990",
+            "Note": "3/10"
+        },
+        {
+            "Annee": "1990-2000",
+            "Note": "4/10"
+        },
+        {
+            "Annee": "2000-2010",
+            "Note": "5/10"
+        },
+        {
+            "Annee": "2010-9999",
+            "Note": "7/10"
+        }
+    ],
+    "Energie": [
+        {
+            "Energie": "Essence",
+            "Note": "5/10"
+        },
+        {
+            "Energie": "Electrique",
+            "Note": "9/10"
+        },
+        {
+            "Energie": "Gaz",
+            "Note": "6/10"
+        },
+        {
+            "Energie": "Diesel",
+            "Note": "4/10"
+        },
+        {
+            "Energie": "Hybride",
+            "Note": "7/10"
+        }
+    ],
+    "Passagers": [
+        {
+            "Passagers": "1",
+            "Taux": "+0.11"
+        },
+        {
+            "Passagers": "2",
+            "Taux": "-0.17"
+        },
+        {
+            "Passagers": "3",
+            "Taux": "-0.29"
+        },
+        {
+            "Passagers": "4",
+            "Taux": "-0.53"
+        }
+    ],
+    "Taux d’emprunt": [
+        {
+            "Score": "0-10",
+            "Taux": "3"
+        },
+        {
+            "Score": "11-15",
+            "Taux": "2,74"
+        },
+        {
+            "Score": "16-25",
+            "Taux": "2,52"
+        },
+        {
+            "Score": "26-33",
+            "Taux": "2,10"
+        },
+        {
+            "Score": "34-40",
+            "Taux": "1,85"
+        }
+    ]
+}
