@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 class TUI
 {
@@ -9,7 +8,7 @@ class TUI
     private string title;
 
     public TUI(string title, string[] options)
-    { // Constructeur de la classe
+    {
         this.title = title;
         this.options = options;
         this.cursorPosition = 0;
@@ -18,10 +17,10 @@ class TUI
     public void Display()
     { // Affiche le menu
         Console.Clear();
-        int consoleWidth = Console.WindowWidth;
-        int consoleHeight = Console.WindowHeight;
-
         DisplayTitle(title);
+
+        int maxOptionLength = options.Max(option => option.Length);
+        int frameWidth = maxOptionLength + 4;
 
         // Affichage des options
         for (int i = 0; i < options.Length; i++)
@@ -36,20 +35,30 @@ class TUI
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            int padding = (consoleWidth - options[i].Length) / 2;
-            Console.SetCursorPosition(padding, i + 2);
-            Console.Write(options[i]);
-            if (i == cursorPosition)
-            {
-                Console.SetCursorPosition(padding - 2, i + 2);
-                Console.Write(">");
-            }
+
+            // Affichage des ║ et des options
+            Console.SetCursorPosition((Console.WindowWidth - frameWidth) / 2, i + 2);
+            Console.Write("║"); 
+            Console.Write(" " + options[i].PadRight(maxOptionLength) + "   ");
+            Console.Write("║");
+
             Console.ResetColor();
         }
+
+        // Affichage du cadre
+        Console.SetCursorPosition((Console.WindowWidth - frameWidth) / 2, 1);
+        Console.Write("╔");
+        Console.Write(new string('═', frameWidth));
+        Console.Write("╗");
+
+        Console.SetCursorPosition((Console.WindowWidth - frameWidth) / 2, options.Length + 2);
+        Console.Write("╚");
+        Console.Write(new string('═', frameWidth));
+        Console.Write("╝");
     }
 
     public void DisplayTitle(string title)
-    { // Affiche le titre
+    {
         int consoleWidth = Console.WindowWidth;
         Console.SetCursorPosition((consoleWidth - title.Length) / 2, 0);
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -58,10 +67,10 @@ class TUI
     }
 
     public string Run()
-    { // Lance le menu et retourne l'option choisie
+    {
         Display();
 
-        // Boucle infinie pour gérer les touches
+        // Boucle infinie pour la sélection des options
         while (true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -90,6 +99,7 @@ class TUI
         }
     }
 }
+
 
 class Program
 {
@@ -160,24 +170,10 @@ class Program
 
         Console.Clear();
 
-        // Affichage des informations saisies par l'utilisateur
-        Console.WriteLine("Type de voiture : " + voiture);
-        Console.WriteLine("Energie : " + energie);
-        Console.WriteLine("Kilométrage : " + kilometrage);
-        Console.WriteLine("Année : " + annee);
-        Console.WriteLine("Nombre de passagers : " + passagers);
-        Console.WriteLine("---------------------------------");
-
         int typeIndex = Array.IndexOf(typeOptions, voiture);
         int kilometrageIndex = Array.IndexOf(kilometrageOptions, kilometrage);
         int anneeIndex = Array.IndexOf(anneeOptions, annee);
         int energieIndex = Array.IndexOf(energieOptions, energie);
-
-        // Affichage des notes
-        Console.WriteLine("Note type : " + data.Type[typeIndex].Note);
-        Console.WriteLine("Note energie : " + data.Energie[energieIndex].Note);
-        Console.WriteLine("Note kilometrage : " + data.Kilometrage[kilometrageIndex].Note);
-        Console.WriteLine("Note annee : " + data.Annee[anneeIndex].Note);
 
         // Calcul du score
         string noteType = data.Type[typeIndex].Note;
@@ -193,9 +189,6 @@ class Program
 
         // On convertit en int et on additionne les notes
         int scoreVehicule = Convert.ToInt32(noteType) + Convert.ToInt32(noteKilometrage) + Convert.ToInt32(noteAnnee) + Convert.ToInt32(noteEnergie);
-
-        // Affichage du score du véhicule
-        Console.WriteLine("Score du véhicule : " + scoreVehicule + "/40");
 
         // Calcul du taux d'emprunt
         string tauxEmprunt = "";
@@ -238,9 +231,32 @@ class Program
             tauxEmprunt = Convert.ToString(Convert.ToDouble(tauxEmprunt) + Convert.ToDouble(data.Passagers[3].Taux));
         }
 
+        // Affichage des informations saisies par l'utilisateur
+        Console.WriteLine("╔══════════════════╦═════════════════╗");
+        Console.WriteLine("║ Type de voiture  ║ " + voiture.PadRight(15) + " ║");
+        Console.WriteLine("║ Energie          ║ " + energie.PadRight(15) + " ║");
+        Console.WriteLine("║ Kilométrage      ║ " + kilometrage.PadRight(15) + " ║");
+        Console.WriteLine("║ Année            ║ " + annee.PadRight(15) + " ║");
+        Console.WriteLine("║ Passagers        ║ " + passagers.PadRight(15) + " ║");
+        Console.WriteLine("╠══════════════════╬═════════════════╣");
+        
+        // Affichage du total score du véhicule
+        Console.WriteLine("║ Total score      ║ " + scoreVehicule.ToString().PadRight(15) + " ║");
+        Console.WriteLine("╚══════════════════╩═════════════════╝");
+
+        // Affichage des notes
+        Console.WriteLine("╔══════════════════╦═════════════════╗");
+        Console.WriteLine("║ Note type        ║ " + noteType.PadRight(15) + " ║");
+        Console.WriteLine("║ Note kilométrage ║ " + noteKilometrage.PadRight(15) + " ║");
+        Console.WriteLine("║ Note année       ║ " + noteAnnee.PadRight(15) + " ║");
+        Console.WriteLine("║ Note énergie     ║ " + noteEnergie.PadRight(15) + " ║");
+        Console.WriteLine("╚══════════════════╩═════════════════╝");
+
         // Affichage du taux d'emprunt en rouge 
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Taux d'emprunt : " + tauxEmprunt + "%");
+        Console.WriteLine("╔══════════════════╦═════════════════╗");
+        Console.WriteLine("║ Taux d'emprunt   ║ " + tauxEmprunt.PadRight(14) + "% ║");
+        Console.WriteLine("╚══════════════════╩═════════════════╝");
         Console.ResetColor();
     }
 }
